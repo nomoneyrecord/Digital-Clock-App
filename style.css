@@ -1,11 +1,16 @@
 body {
-  background-color: blueviolet;
-  color: pink;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size:x-large;
-  padding-top: 50px;
+  background-color: black;
+  text-align: center;
 }
 
-.title-container {
-  text-align: center;
+h1 {
+  color: rgb(148, 128, 128);
+  font-size: 60px;
+  padding-top: 20px;
+}
+
+div {
+  color: rgb(148, 128, 128);
+  font-size: 60px;
+  padding-top: 20px;
 }
