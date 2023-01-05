@@ -1,23 +1,30 @@
-let clock = () => {
-  let date = new Date();
-  let hrs = date.getHours();
-  let mins = date.getMinutes();
-  let secs = date.getSeconds();
-  let period = "AM";
-  if (hrs == 0) {
-    hrs = 12;
-  } else if (hrs >= 12) {
-    hrs = hrs - 12;
-    period = "PM";
+function startTime() {
+  let today = new Date();
+  let hr = today.getHours();
+  let min = today.getMinutes();
+  let sec = today.getSeconds();
+  ap = (hr < 12) ? "<span>AM</span>" : "<span>PM</span>";
+  hr = (hr == 0) ? 12 : hr;
+  hr = (hr > 12) ? hr - 12 : hr;
+  hr = checkTime(hr);
+  min = checkTime(min);
+  sec = checkTime(sec);
+  document.getElementById("clock").innerHTML = hr + ":" + min + ":" + sec + " " + ap;
+  
+  let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  let curWeekDay = days[today.getDay()];
+  let curDay = today.getDate();
+  let curMonth = months[today.getMonth()];
+  let curYear = today.getFullYear();
+  let date = curWeekDay+", "+curDay+" "+curMonth+" "+curYear;
+  document.getElementById("date").innerHTML = date;
+  let time = setTimeout(function(){ startTime() }, 1000);
+}
+function checkTime(i) {
+  if (i < 10) {
+      i = "0" + i;
   }
-  hrs = hrs < 10 ? "0" + hrs : hrs;
-  mins = mins < 10 ? "0" + mins : mins;
-  secs = secs < 10 ? "0" + secs : secs;
-
-  let time = `${hrs}:${mins}:${secs}:${period}`;
-  document.getElementById("clock").innerText = time;
-  setTimeout(clock, 1000);
-
-};
-
-clock();
+  return i;
+}
+startTime();
