@@ -1,4 +1,4 @@
-function startTime() {
+function todaysDate() {
   let today = new Date();
   let hr = today.getHours();
   let min = today.getMinutes();
@@ -9,22 +9,40 @@ function startTime() {
   hr = checkTime(hr);
   min = checkTime(min);
   sec = checkTime(sec);
-  document.getElementById("clock").innerHTML = hr + ":" + min + ":" + sec + " " + ap;
   
-  let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  let curWeekDay = days[today.getDay()];
-  let curDay = today.getDate();
-  let curMonth = months[today.getMonth()];
-  let curYear = today.getFullYear();
-  let date = curWeekDay+", "+curDay+" "+curMonth+" "+curYear;
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const weekDay = days[today.getDay()];
+  const day = today.getDate();
+  const month = months[today.getMonth()];
+  const year = today.getFullYear();
+  const date = weekDay+", "+month+" "+day+" "+year;
+
   document.getElementById("date").innerHTML = date;
-  let time = setTimeout(function(){ startTime() }, 1000);
+  document.getElementById("clock").innerHTML = hr + ":" + min + ":" + sec + " " + ap;
+
+  let time = setTimeout(function(){ todaysDate() }, 1000);
 }
+
+function ordinal(date) {
+  if(date > 20 || date < 10) {
+    switch(date%10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+    }
+  }
+  return "th";
+}
+
 function checkTime(i) {
   if (i < 10) {
       i = "0" + i;
   }
   return i;
 }
-startTime();
+todaysDate();
+ordinal();
