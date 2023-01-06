@@ -1,3 +1,4 @@
+//utilized a couple different approaches for time and date
 function todaysDate() {
   let today = new Date();
   let hr = today.getHours();
@@ -20,10 +21,10 @@ function todaysDate() {
 
   document.getElementById("date").innerHTML = date;
   document.getElementById("clock").innerHTML = hr + ":" + min + ":" + sec + " " + ap;
-
+//Utilizing the "setTimeout" value and milliseconds to get clock to tick
   let time = setTimeout(function(){ todaysDate() }, 1000);
 }
-
+//Used the checkTime method to add 0 in clock when necessary
 function checkTime(i) {
   if (i < 10) {
       i = "0" + i;
