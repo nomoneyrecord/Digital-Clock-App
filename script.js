@@ -24,20 +24,6 @@ function todaysDate() {
   let time = setTimeout(function(){ todaysDate() }, 1000);
 }
 
-function ordinal(date) {
-  if(date > 20 || date < 10) {
-    switch(date%10) {
-      case 1:
-        return "st";
-      case 2:
-        return "nd";
-      case 3:
-        return "rd";
-    }
-  }
-  return "th";
-}
-
 function checkTime(i) {
   if (i < 10) {
       i = "0" + i;
@@ -45,4 +31,3 @@ function checkTime(i) {
   return i;
 }
 todaysDate();
-ordinal();
