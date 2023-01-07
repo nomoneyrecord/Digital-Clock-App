@@ -1,15 +1,30 @@
 body {
   background-color: black;
   text-align: center;
+  animation: colorChange 15s infinite;
 }
 
+@keyframes colorChange {
+  0% {
+    background-color: #08f820;
+  }
+  50% {
+    background-color: #0000FF;
+  }
+  100% {
+    background-color: #00FF00;
+  }
+}
+
+
+
 h1 {
-  color: rgb(148, 128, 128);
+  color: whitesmoke;
   font-size: 60px;
 }
 
 div {
-  color: rgb(148, 128, 128);
+  color: whitesmoke;
   font-size: 90px;
   padding-top: 100px;
 }
