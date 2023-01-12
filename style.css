@@ -6,25 +6,26 @@ body {
 
 @keyframes colorChange {
   0% {
-    background-color: #08f820;
+    background-color: #05bc17;
+    color: #d11b03;
   }
   50% {
     background-color: #0000FF;
+    color: rgb(3, 200, 3);
   }
   100% {
-    background-color: #00FF00;
+    background-color: #05bc17;
+    color: rgb(199, 4, 4);
   }
 }
 
 
 
 h1 {
-  color: whitesmoke;
   font-size: 60px;
 }
 
 div {
-  color: whitesmoke;
   font-size: 90px;
   padding-top: 100px;
 }

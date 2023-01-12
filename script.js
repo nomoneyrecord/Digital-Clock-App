@@ -1,36 +1,34 @@
 //utilized a couple different approaches for time and date
-function todaysDate() {
+function updateClockElements() {
   let today = new Date();
-  let hr = today.getHours();
-  let min = today.getMinutes();
-  let sec = today.getSeconds();
-  ap = (hr < 12) ? "<span>AM</span>" : "<span>PM</span>";
-  hr = (hr == 0) ? 12 : hr;
-  hr = (hr > 12) ? hr - 12 : hr;
-  hr = checkTime(hr);
-  min = checkTime(min);
-  sec = checkTime(sec);
-  
+  const str_Time = formatTimeString(today)
+  const str_Date = formatDateString(today)
+  document.getElementById("date").innerText = str_Date;
+  document.getElementById("clock").innerText = str_Time
+}
+
+const formatTimeString = (today) => {
+  const str_Hour = addLeadingZero(today.getHours() < 12 ? today.getHours() : today.getHours() - 12)
+  const str_Minute = addLeadingZero(today.getMinutes())
+  const str_Second = addLeadingZero(today.getSeconds())
+  const str_AMorPM = today.getHours() < 12 ? "AM" : "PM"
+  return str_Hour + ":" + str_Minute + ":" + str_Second + " " + str_AMorPM
+}
+
+const addLeadingZero = (number) => {
+  if (number >= 10) return number
+  return "0"+number
+} 
+
+const formatDateString = (today) => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const suffix = ['st','nd','rd',...Array(13).fill('th'),'st','nd','rd',Array(7).fill('th'),'st']
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const weekDay = days[today.getDay()];
   const day = today.getDate();
+  const weekDay = days[today.getDay()];
   const month = months[today.getMonth()];
   const year = today.getFullYear();
-  const date = weekDay+", "+month+" "+day+suffix[day]+" "+year;
-
-  document.getElementById("date").innerHTML = date;
-  document.getElementById("clock").innerHTML = hr + ":" + min + ":" + sec + " " + ap;
-
-//Utilizing the "setTimeout" value and milliseconds to get clock to tick
-  let time = setTimeout(function(){ todaysDate() }, 1000);
+  return weekDay+", "+month+" "+day+suffix[day]+" "+year;
 }
-//Used the checkTime method to add 0 in clock when necessary
-function checkTime(i) {
-  if (i < 10) {
-      i = "0" + i;
-  }
-  return i;
-}
-todaysDate();
+  
+setInterval(updateClockElements,1000)
